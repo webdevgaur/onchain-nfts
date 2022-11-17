@@ -6,13 +6,14 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+import "hardhat/console.sol";
 
 contract chainBattles is ERC721URIStorage {
     using Strings for uint256;
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    mapping(uint256 => uint 256) public tokenIdToLevels;
+    mapping(uint256 => uint256) public tokenIdToLevels;
 
     constructor() ERC721('Chain Battles', 'BTLX') {
 
@@ -33,7 +34,7 @@ contract chainBattles is ERC721URIStorage {
             abi.encodePacked(
                 'data:image/svg+xml;base64,',
                 Base64.encode(svg)
-            );
+            )
         );
     }
 
@@ -46,24 +47,28 @@ contract chainBattles is ERC721URIStorage {
         bytes memory dataURI = abi.encodePacked(
             '{',
                 '"name": "Chain Battles #', tokenId.toString(), '",',
-                '"description": "Battles on chain ⚔️",',
+                '"description": "', unicode"Battles on chain ⚔️", '",',
                 '"image": "', generateCharacter(tokenId), '"',
             '}'
         );
 
-        return string(
+        string memory metadata = string(
             abi.encodePacked(
                 "data:application/json;base64,",
                 Base64.encode(dataURI)
-            );
+            )
         );
+
+        console.log(metadata);
+
+        return metadata;
 
     }
 
     function mint() public {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
-        _safemint(msg.sender, newItemId);
+        _safeMint(msg.sender, newItemId);
         tokenIdToLevels[newItemId] = 0;
         _setTokenURI(newItemId, getTokenURI(newItemId));
     }
