@@ -14,6 +14,11 @@ contract chainBattles is ERC721URIStorage {
     Counters.Counter private _tokenIds;
 
     mapping(uint256 => uint256) public tokenIdToLevels;
+    // challenge: Map an uint to a struct
+    // In the struct map the following - HP, strength, speed
+    // At mint time, map out a full list of stats to the character
+    // Figure how to do pseudo random number generation on chain (How to use chainlink for that?)
+    // Update the train functionality to update the stats as they update
 
     constructor() ERC721('Chain Battles', 'BTLX') {
 
@@ -59,7 +64,7 @@ contract chainBattles is ERC721URIStorage {
             )
         );
 
-        console.log(metadata);
+        // console.log(metadata);
 
         return metadata;
 
