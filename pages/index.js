@@ -6,7 +6,6 @@ import CharacterPanel from './components/CharacterPanel/CharacterPanel'
 export default function Home() {
   return (
     <>
-      <div>Hello world</div>
       <CharacterPanel />
     </>
     
