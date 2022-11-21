@@ -14,18 +14,34 @@ contract chainBattles is ERC721URIStorage {
     Counters.Counter private _tokenIds;
 
     mapping(uint256 => uint256) public tokenIdToLevels;
+
+    mapping (address => Character[]) public playerToCharacter;
+    
     // challenge: Map an uint to a struct
     // In the struct map the following - HP, strength, speed
     // At mint time, map out a full list of stats to the character
     // Figure how to do pseudo random number generation on chain (How to use chainlink for that?)
     // Update the train functionality to update the stats as they update
 
+    struct Character {
+        string name;
+        string role;
+        uint256 level;
+        uint256 mana;
+        uint256 strength;
+        uint256 edginess;
+        address player;
+        uint256 timestamp;
+    }
+
+    Character[] characters;
+
     constructor() ERC721('Chain Battles', 'BTLX') {
 
     }
 
 
-    function generateCharacter (uint256 tokenId) public returns (string memory) {
+    function generateCharacter (uint256 tokenId) view public returns (string memory) {
         bytes memory svg = abi.encodePacked(
            "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'>",
            "<style>.role { fill: white; font-family: sans-serif; font-size: 60px; font-weight: bold }</style>",
@@ -48,7 +64,7 @@ contract chainBattles is ERC721URIStorage {
         return levels.toString();
     }
 
-    function getTokenURI (uint256 tokenId) public returns (string memory) {
+    function getTokenURI (uint256 tokenId) view public returns (string memory) {
         bytes memory dataURI = abi.encodePacked(
             '{',
                 '"name": "Chain Battles #', tokenId.toString(), '",',
@@ -73,8 +89,8 @@ contract chainBattles is ERC721URIStorage {
     function mint() public {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
-        _safeMint(msg.sender, newItemId);
         tokenIdToLevels[newItemId] = 0;
+        _safeMint(msg.sender, newItemId);        
         _setTokenURI(newItemId, getTokenURI(newItemId));
     }
 
