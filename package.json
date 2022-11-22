@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.13",
     "@nomiclabs/hardhat-etherscan": "^3.1.2",
     "dotenv": "^16.0.3",
     "eslint": "8.27.0",
