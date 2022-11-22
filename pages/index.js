@@ -1,13 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import CharacterPanel from './components/CharacterPanel/CharacterPanel'
+import React, { useState } from "react";
+import CharacterPanel from "../components/CharacterPanel";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
-    <>
-      <CharacterPanel />
-    </>
-    
-  )
+    <div className="">
+      <div className="">
+        <Navbar />
+        <CharacterPanel />
+      </div>
+    </div>
+  );
 }
