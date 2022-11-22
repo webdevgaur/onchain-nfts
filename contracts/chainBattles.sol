@@ -30,7 +30,8 @@ contract chainBattles is ERC721URIStorage {
         uint256 mana;
         uint256 strength;
         uint256 edginess;
-        address player;
+        uint256 life;
+        address playerAddress;
         uint256 timestamp;
     }
 
@@ -86,7 +87,18 @@ contract chainBattles is ERC721URIStorage {
 
     }
 
-    function mint() public {
+    function mint(string memory _name, string memory _role, uint256 _mana, uint256 _strength, uint256 _edginess, uint256 _life) public {
+        characters.push(Character(
+            _name,
+            _role,
+            0,
+            _mana,
+            _strength,
+            _edginess,
+            _life,
+            msg.sender,
+            block.timestamp
+        ));
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         tokenIdToLevels[newItemId] = 0;
