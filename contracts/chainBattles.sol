@@ -88,20 +88,22 @@ contract chainBattles is ERC721URIStorage {
     }
 
     function mint(string memory _name, string memory _role, uint256 _mana, uint256 _strength, uint256 _edginess, uint256 _life) public {
-        characters.push(Character(
+        Character[] newOne;
+        newOne(
             _name,
             _role,
-            0,
+            1,
             _mana,
             _strength,
             _edginess,
             _life,
             msg.sender,
             block.timestamp
-        ));
+        );
+        characters.push(newOne);
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
-        tokenIdToLevels[newItemId] = 0;
+        // tokenIdToLevels[newItemId] = 0;
         _safeMint(msg.sender, newItemId);        
         _setTokenURI(newItemId, getTokenURI(newItemId));
     }
@@ -109,8 +111,22 @@ contract chainBattles is ERC721URIStorage {
     function train(uint256 tokenId) public {
         require(_exists(tokenId), "Please use an existing token.");
         require(ownerOf(tokenId) == msg.sender, "Please only train your tokens.");
-        uint256 currentLevel = tokenIdToLevels[tokenId];
-        tokenIdToLevels[tokenId] = currentLevel + 1;
+        // uint256 currentLevel = tokenIdToLevels[tokenId];
+        // tokenIdToLevels[tokenId] = currentLevel + 1;
+
+        // Update character strength
+        uint256 currentStrength = playerToCharacter[msg.sender].strength;
+        playerToCharacter[msg.sender].strength = currentStrength + 5;
+
+        // Update character mana
+        uint256 currentMana = playerToCharacter[msg.sender].mana;
+        playerToCharacter[msg.sender].mana = currentMana + 5;
+
+        // Update character edginess
+        uint256 currentEdginess = playerToCharacter[msg.sender].edginess;
+        playerToCharacter[msg.sender].edginess = currentEdginess + 5;
+
+
         _setTokenURI(tokenId, getTokenURI(tokenId));
     }
 
