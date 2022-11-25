@@ -1,6 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan");
-require('dotenv').config();
+require("dotenv").config();
 
 const TESTNET_URL = process.env.TESTNET_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
@@ -17,5 +17,5 @@ module.exports = {
   },
   etherscan: {
     apiKey: POLYGONSCAN_PVT_KEY,
-  }
+  },
 };
