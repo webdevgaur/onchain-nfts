@@ -1,3 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;1,500;1,600&family=Poppins:wght@200;300;400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  font-family: "Cormorant";
+   font-style: italic;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 73px;
+  text-align: center;
+
+  background: linear-gradient(
+    130.37deg,
+    #2a8ad7 27.02%,
+    rgba(30, 142, 190, 0.744792) 59.76%,
+    rgba(187, 39, 154, 0.411458) 101.01%,
+    rgba(117, 13, 153, 0) 152.74%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
