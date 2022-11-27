@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <div className='h-screen overflow-hidden'>
       <div className="login-header shadow-sm h-20 flex w-full items-center justify-center mx-auto">
-        <Image src={Logo} width={60} height={60} />
+        <Image src={Logo} alt="sword battle logo" width={60} height={60} />
         <h3 className="logo ">Sword Battle</h3>
       </div>
       <div className="-mt-10 main h-full w-full flex justify-evenly items-center max-w-[1300px] mx-auto borde bordr-2 spac-28">

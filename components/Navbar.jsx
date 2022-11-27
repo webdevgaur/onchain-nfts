@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className="p-2 flex flex-wrap sm:justify-between justify-center items-center border-b px-6  border-gray-200">
       <div className="flex justify-between items-center space-x-5 w-screen ">
         <div className="flex items-center cursor-pointer">
-          <Image src={Logo} width={60} height={60} />
+          <Image src={Logo} alt="sword battle logo" width={60} height={60} />
           <h3 className="logo ">Sword Battle</h3>
         </div>
         {!currentAccount ? (
