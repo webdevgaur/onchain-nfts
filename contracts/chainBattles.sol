@@ -108,7 +108,7 @@ contract chainBattles is ERC721URIStorage {
         _setTokenURI(newItemId, getTokenURI(newItemId));
     }
 
-    error cannotTrainYet();
+    error cannotTrainYet(uint256 lastTimestamp, uint256 timeStamp);
 
     function train(uint256 tokenId) public {
         require(_exists(tokenId), "Please use an existing token.");
